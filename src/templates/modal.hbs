@@ -1,15 +1,15 @@
 {{#each this}}
-  {{!-- <div class='movie' data-id='{{this.id}}'>
+  <div class='movie' data-id='{{this.id}}'>
     <a class='movie__link' href=''>
       <img
         class='movie__poster'
         src='{{this.poster}}'
-        alt='Movie poster'
+        alt='{{this.tags}}'
         loading='lazy'
       />
       <h2 class='movie__title'>{{this.title}}</h2>
       <p class='movie__info'>{{this.genres}} | {{this.date}}</p>
 
     </a>
-  </div> --}}
+  </div>
 {{/each}}
