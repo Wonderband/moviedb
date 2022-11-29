@@ -110,6 +110,7 @@
   cursor: pointer;
   scale: 1;
   transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  fill: #fff;
 
   &:hover {
     scale: 1.7;
@@ -155,11 +156,9 @@
   padding: 0;
   border-style: none;
   background-color: transparent;
-  cursor: pointer;
+  
   color: white;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 14px;
   text-transform: uppercase;
 
   scale: 1;
@@ -167,6 +166,7 @@
 
   &:hover {
     scale: 1.2;
+    color: $accent-color;
   }
 }
 
@@ -177,11 +177,8 @@
   padding: 0;
   border-style: none;
   background-color: transparent;
-  cursor: pointer;
-  color: white;
+   color: white;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 14px;
   text-transform: uppercase;
 
   scale: 1;
@@ -189,6 +186,7 @@
 
   &:hover {
     scale: 1.15;
+    color: $accent-color;
   }
 }
 
