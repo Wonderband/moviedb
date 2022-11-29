@@ -1,0 +1,75 @@
+@mixin retina {
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+.head {
+  position: relative;
+  margin: 0 auto;
+  max-width: 480px;
+
+  padding-top: 40px;
+  padding-bottom: 44px;
+
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56) 40%,
+      rgba(0, 0, 0, 0.56) 40%
+    ),
+    url(../jpg/main-bg-mob-min.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #2f303a;
+
+  @include retina {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56) 40%,
+        rgba(0, 0, 0, 0.56) 40%
+      ),
+      url(../jpg/main-bg-mob@2x-min.jpg);
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56) 40%,
+        rgba(0, 0, 0, 0.56) 40%
+      ),
+      url(../jpg/main-bg-tablet-min.jpg);
+
+    @include retina {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56) 40%,
+          rgba(0, 0, 0, 0.56) 40%
+        ),
+        url(../jpg/main-bg-tablet@2x-min.jpg);
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1280px;
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56) 40%,
+        rgba(0, 0, 0, 0.56) 40%
+      ),
+      url(../jpg/main-desktop-min.jpg);
+
+    @include retina {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56) 40%,
+          rgba(0, 0, 0, 0.56) 40%
+        ),
+        url(../jpg/main-desktop@2x-min.jpg);
+    }
+  }
+}
