@@ -2,6 +2,7 @@ import axios from 'axios';
 import createGallery from '../templates/movies-list.hbs';
 import Notiflix from 'notiflix';
 import notFoundImg from '../jpg/not-found-img.png';
+import { createPagination } from './pagination.js';
 
 const moviesGallery = document.querySelector('.gallery');
 const submitBtn = document.querySelector('.submit-button');
@@ -20,8 +21,9 @@ class MovieDB {
   showTrending() {
     Promise.all([getGenres(GENRES_URL), getMovies(TRENDING_URL)])
       .then(res => {
-        this.genresArray = res[0];
-        return res[1].data.results;
+        this.genresArray = res[0];        
+        this.totalMovies = res[1].data.total_results;
+        return res[1].data;
       })
       .then(result => {
         return this.buildMoviesData(result);
@@ -31,7 +33,10 @@ class MovieDB {
   }
 
   buildMoviesData(data) {
-    return data.map(el => {
+    console.log(data);
+    const movieData = data.results;
+    this.totalMovies = data.total_results;
+    return movieData.map(el => {
       return {
         // relative path to image doesnt work on localhost?!
         poster: el.poster_path ? IMG_URL + el.poster_path : notFoundImg,
@@ -49,9 +54,12 @@ class MovieDB {
 const myMoviesDB = new MovieDB();
 myMoviesDB.showTrending();
 submitBtn.addEventListener('click', findMovies);
-
-function showMovies(resultArray) {
+console.log(createPagination());
+function showMovies(resultArray) { 
+  // moviesGallery.dataset.totalMovies = myMoviesDB.totalMovies;
   moviesGallery.insertAdjacentHTML('beforeend', createGallery(resultArray));
+  // console.log(moviesGallery.dataset.totalMovies);
+   
 }
 
 function clearMovies() {
@@ -88,7 +96,7 @@ function findMovies(event) {
   const queryRequest = SEARCH_URL + '&query=' + query;
   getMovies(queryRequest)
     .then(res => {
-      return myMoviesDB.buildMoviesData(res.data.results);
+      return myMoviesDB.buildMoviesData(res.data);
     })
     .then(movies => {
       clearMovies();
