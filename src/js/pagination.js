@@ -1,11 +1,11 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
-export const createPagination = () => {
+export default  () => {
     const options = {
 
     };
-    const pagination = new Pagination('paginator');
+    const pagination = new Pagination('paginator', options);
     console.log('hi');    
 }
 

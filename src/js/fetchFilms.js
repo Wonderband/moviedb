@@ -2,7 +2,7 @@ import createGallery from '../templates/movies-list.hbs';
 import Notiflix from 'notiflix';
 import notFoundImg from '../jpg/not-found-img.png';
 
-// import { createPagination } from './pagination.js';
+import  createPagination  from './pagination';
 
 import requestWithKey from './requestWithKey';
 
@@ -53,12 +53,12 @@ class MovieDB {
 const myMoviesDB = new MovieDB();
 myMoviesDB.showTrending();
 submitBtn.addEventListener('click', findMovies);
-console.log(createPagination());
+// console.log(createPagination());
+
 function showMovies(resultArray) { 
-  // moviesGallery.dataset.totalMovies = myMoviesDB.totalMovies;
+  moviesGallery.dataset.totalMovies = myMoviesDB.totalMovies;
   moviesGallery.insertAdjacentHTML('beforeend', createGallery(resultArray));
-  // console.log(moviesGallery.dataset.totalMovies);
-   
+  console.log(moviesGallery.dataset.totalMovies);   
 }
 
 function clearMovies() {
@@ -92,7 +92,7 @@ function findMovies(event) {
     myMoviesDB.showTrending();
     return;
   }
-  const queryRequest = SEARCH_URL + '&query=' + query;
+  const queryRequest = SEARCH_URL + '?query=' + query;
   getMovies(queryRequest)
     .then(res => {
       return myMoviesDB.buildMoviesData(res.data);
