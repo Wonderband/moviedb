@@ -1,0 +1,73 @@
+.gallery {
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+
+  @include mobile {
+    padding-top: 20px;
+    grid-template-columns: 280px;
+    gap: 20px;
+  }
+
+  @include tablet {
+    padding-top: 60px;
+    grid-template-columns: repeat(2, 336px);
+    gap: 32px;
+  }
+
+  @include desktop {
+    padding-top: 60px;
+    grid-template-columns: repeat(3, 395px);
+    gap: 32px 16px;
+  }
+}
+
+.movie {
+  &__poster {
+    border-radius: 5px;
+    width: 280px;
+    height: 402px;
+
+    @include tablet {
+      width: 336px;
+      height: 455px;
+    }
+    @include desktop {
+      width: 395px;
+      height: 574px;
+    }
+
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__title {
+    margin: 12px 0 4px 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.16;
+    text-transform: uppercase;
+
+    color: $primary-color;
+
+    @include desktop {
+      font-size: 20px;
+      line-height: 1.2;
+    }
+  }
+
+  &__info {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    margin: 0;
+
+    color: $accent-color;
+
+    @include desktop {
+      font-size: 20px;
+      line-height: 1.2;
+    }
+  }
+}
