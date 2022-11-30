@@ -1,0 +1,86 @@
+.footer {
+  padding: 29px 0;
+  background: #f7f7f7;
+  @media screen and (min-width: 768px) {
+    padding: 30 0;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 29px 0;
+  }
+}
+
+.footer__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+.footer__text:first-of-type {
+  @media screen and (min-width: 768px) {
+    margin-right: 4px;
+  }
+}
+.footer__svg {
+  margin: 0 10px;
+  order: 1;
+}
+.footer__text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  color: #545454;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: calc(19 / 16);
+  }
+}
+.footer__button {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  text-decoration-line: underline;
+  color: #545454;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: calc(19 / 16);
+  }
+}
+
+.footer__text:has(.footer__button) {
+  order: 2;
+}
+
+.footer__text:has(.footer__button):hover + .footer__svg {
+  animation-name: heartBeating;
+  animation-duration: 1500ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+@keyframes heartBeating {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(0.8);
+  }
+  25% {
+    transform: scale(1.4);
+  }
+  35% {
+    transform: scale(1.2);
+  }
+  60% {
+    transform: scale(1.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

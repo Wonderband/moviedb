@@ -1,7 +1,13 @@
-@import '~node_modules/modern-normalize/modern-normalize.css';
-@import './utils/variables';
+@import './base/google-fonts';
+@import './base/modern-normalize';
+@import './base/variables';
 @import './base/body.scss';
 @import './base/reset.scss';
-@import './base/visually-hidden.scss';
+
+@import './components/container';
+
+@import './utils/visually-hidden.scss';
+
 @import './layouts/header.scss';
 @import './layouts/lib-header.scss';
+@import './layouts/footer';
