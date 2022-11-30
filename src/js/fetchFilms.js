@@ -1,20 +1,16 @@
-import axios from 'axios';
 import createGallery from '../templates/movies-list.hbs';
 import Notiflix from 'notiflix';
 import notFoundImg from '../jpg/not-found-img.png';
+import requestWithKey from './requestWithKey';
 
 const moviesGallery = document.querySelector('.gallery');
 const submitBtn = document.querySelector('.submit-button');
 const searchForm = document.querySelector('.search-form');
 
-const API_KEY = '0fd1ddf45233c721325ad47f082cd332';
-const GENRES_URL =
-  'https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY;
-const TRENDING_URL =
-  'https://api.themoviedb.org/3/trending/movie/week?api_key=' + API_KEY;
+const GENRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
+const TRENDING_URL = 'https://api.themoviedb.org/3/trending/movie/week';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-const SEARCH_URL =
-  'https://api.themoviedb.org/3/search/movie?api_key=' + API_KEY;
+const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
 
 class MovieDB {
   showTrending() {
@@ -60,7 +56,7 @@ function clearMovies() {
 
 async function getMovies(request) {
   try {
-    const responce = await axios.get(request);
+    const responce = await requestWithKey(request);
     return responce;
   } catch (err) {
     throw new Error(err);
@@ -69,7 +65,7 @@ async function getMovies(request) {
 
 async function getGenres(request) {
   try {
-    const responce = await axios.get(request);
+    const responce = await requestWithKey(request);
     return responce.data.genres;
   } catch (err) {
     throw new Error(err);
