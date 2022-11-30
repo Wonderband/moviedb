@@ -1,24 +1,24 @@
-{{#each this}}
-  <a class='modal__link' href='#'>
-    <img
-      class='modal__poster'
-      src='{{this.poster}}'
-      alt='{{this.title}}'
-      loading='lazy'
-    />
-  </a>
-  <h3>{{this.title}}</h3>
-  <div class='modal__meta'>
-    <ul>
-      <li><span>Vote/Votes</span><span
-        >{{this.vote_average}}/{{this.vote_count}}</span></li>
-      <li><span>Popularity</span>{{this.popularity}}<span></span></li>
-      <li>
-        <span>Original Title</span>{{this.original_title}}<span></span>
-      </li>
-      <li><span>Genre</span><span>{{this.genres}}</span></li>
-    </ul>
-    <p>ABOUT</p>
-    <p>{{this.about}}</p>
-  </div>
-{{/each}}
+{{!-- {{#each this}} --}}
+<a class='modal__link' href='#'>
+  <img
+    class='modal__poster'
+    src='{{this.poster}}'
+    alt='{{this.title}}'
+    loading='lazy'
+  />
+</a>
+<h3>{{this.title}}</h3>
+<div class='modal__meta'>
+  <ul>
+    <li><span>Vote/Votes</span><span
+      >{{this.vote_average}}/{{this.vote_count}}</span></li>
+    <li><span>Popularity</span>{{this.popularity}}<span></span></li>
+    <li>
+      <span>Original Title</span>{{this.original_title}}<span></span>
+    </li>
+    <li><span>Genre</span><span>{{this.genres}}</span></li>
+  </ul>
+  <p>ABOUT</p>
+  <p>{{this.about}}</p>
+</div>
+{{!-- {{/each}} --}}
