@@ -5,7 +5,6 @@ import notFoundImg from '../jpg/not-found-img.png';
 const backdropNode = document.querySelector('.backdrop');
 const modalNode = document.querySelector('.modal');
 const moviesGallery = document.querySelector('.gallery');
-const modalCloseBtn = document.querySelector('.modal__close-button');
 
 const MOVIE_URL = 'https://api.themoviedb.org/3/movie/';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
@@ -13,6 +12,15 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 moviesGallery.addEventListener('click', event => {
   if (event.target.closest('.gallery-item')) {
     onOpenModal(event);
+  }
+});
+
+backdropNode.addEventListener('click', event => {
+  if (
+    event.target.closest('.close-button') ||
+    event.target.closest('.backdrop')
+  ) {
+    onCloseModal();
   }
 });
 
@@ -32,20 +40,18 @@ function onOpenModal(event) {
       insertIntoModal(createModal(movieObj));
     })
     .catch(err => console.log(err));
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      onCloseModal();
+      document.removeEventListener('keydown', onCloseModal);
+    }
+  });
 }
 
-modalCloseBtn.addEventListener('click', onCloseModal);
-
-// if (modalNode.classList != '.visually-hidden')
-//   document.addEventListener('keydown', function (event) {
-//     if (event.key === 'Escape') {
-//     }
-//   });
-
-function onCloseModal(event) {
+function onCloseModal() {
   backdropNode.classList.add('visually-hidden');
   modalNode.textContent = '';
-  // event.target.removeEventListener(onCloseModal);
 }
 
 function insertIntoModal(movieData) {
