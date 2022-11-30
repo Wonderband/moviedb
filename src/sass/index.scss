@@ -1,18 +1,16 @@
-@import './base/google-fonts';
-@import './base/modern-normalize';
-@import './base/variables';
+@import './base/google-fonts.scss';
+@import './base/modern-normalize.scss';
+@import './base/variables.scss';
 @import './base/body.scss';
 @import './base/reset.scss';
 
-@import './components/container';
+@import './components/container.scss';
 
 @import './utils/visually-hidden.scss';
+@import './utils/mixins.scss';
 
 @import './layouts/header.scss';
 @import './layouts/lib-header.scss';
-
-@import './base/mixins.scss';
 @import './layouts/gallery.scss';
 @import './layouts/container.scss';
-@import './layouts/footer';
-
+@import './layouts/footer.scss';
