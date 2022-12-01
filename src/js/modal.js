@@ -15,15 +15,6 @@ moviesGallery.addEventListener('click', event => {
   }
 });
 
-backdropNode.addEventListener('click', event => {
-  if (
-    event.target.closest('.close-button') ||
-    event.target.closest('.backdrop')
-  ) {
-    onCloseModal();
-  }
-});
-
 function onOpenModal(event) {
   event.preventDefault();
   backdropNode.classList.remove('visually-hidden');
@@ -41,17 +32,31 @@ function onOpenModal(event) {
     })
     .catch(err => console.log(err));
 
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') {
-      onCloseModal();
-      document.removeEventListener('keydown', onCloseModal);
-    }
-  });
+  document.addEventListener('keydown', onKeyDown);
+  backdropNode.addEventListener('click', onBackdrop);
+}
+
+function onBackdrop(event) {
+  if (
+    event.target.closest('.close-button') ||
+    event.target.closest('.backdrop')
+  ) {
+    onCloseModal();
+  }
+}
+
+function onKeyDown(event) {
+  if (event.key === 'Escape') {
+    onCloseModal();
+  }
 }
 
 function onCloseModal() {
   backdropNode.classList.add('visually-hidden');
   modalNode.textContent = '';
+
+  document.removeEventListener('keydown', onKeyDown);
+  backdropNode.removeEventListener('click', onBackdrop);
 }
 
 function insertIntoModal(movieData) {
