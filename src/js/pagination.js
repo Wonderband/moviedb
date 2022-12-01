@@ -1,11 +1,13 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
-export default  () => {
+export default  total => {
     const options = {
-
+        totalItems: total,
+        itemsPerPage: 20,
+        visiblePages: 8,
     };
-    const pagination = new Pagination('paginator', options);
-    console.log('hi');    
+    return new Pagination('paginator', options);   
+
 }
 
