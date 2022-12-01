@@ -20,6 +20,7 @@ let paginationInstance;
 
 class MovieDB {
   showTrending() {
+
     Promise.all([getGenres(GENRES_URL), getMovies(TRENDING_URL)])
       .then(res => {
         this.genresArray = res[0];
@@ -52,6 +53,7 @@ class MovieDB {
 
 const myMoviesDB = new MovieDB();
 myMoviesDB.showTrending();
+clearPagination();
 submitBtn.addEventListener('click', findMovies);
 
 function showMovies(resultArray) {
