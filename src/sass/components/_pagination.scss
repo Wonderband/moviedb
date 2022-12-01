@@ -2,6 +2,7 @@
     // background-color: aqua;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
 }
 
@@ -20,7 +21,7 @@
     background: #F7F7F7;
     border-radius: 5px;
     border: 0;
-    margin-right: 20px;
+    // margin-right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,14 +35,22 @@
     background: #FF6B08;
     border-radius: 5px;
     border: 0;
-    margin-right: 20px;
+    // margin-right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #paginator a.tui-page-btn {
-    display: block;
+    display: flex;
+    width: 14px;   
+    border: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
 }
 
 

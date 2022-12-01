@@ -104,6 +104,9 @@ function findMovies(event) {
         Notiflix.Notify.failure(
           'Search result not successful. Enter the correct movie name and try again'
         );
+        console.log('hi');
+        clearPagination();
+        myMoviesDB.showTrending();
         return;
       }
       showMovies(movies);
