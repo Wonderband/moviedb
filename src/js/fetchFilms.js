@@ -14,6 +14,7 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
 
 const preloader = document.querySelector('#search-loader');
+const paginatorEl= document.querySelector('#paginator');
 
 let paginationInstance;
 
@@ -87,6 +88,7 @@ function findMovies(event) {
   if (!query) {
     Notiflix.Notify.failure('Empty search doesnt work! Back to trending!');
     clearMovies();
+    clearPagination();
     myMoviesDB.showTrending();
     return;
   }
@@ -125,4 +127,9 @@ function getCurrentPageFromServer(request, currentPage) {
       showMovies(movies);
     })
     .catch(err => console.log(err));
+}
+
+function clearPagination() {
+  paginationInstance.reset(0);
+  paginatorEl.innerHTML = '';
 }
