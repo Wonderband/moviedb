@@ -5,7 +5,7 @@ export default  total => {
     const options = {
         totalItems: total,
         itemsPerPage: 20,
-        visiblePages: 8,
+        visiblePages: 5,
     };
     return new Pagination('paginator', options);   
 

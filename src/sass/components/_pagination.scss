@@ -1,0 +1,49 @@
+#paginator {
+    // background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#paginator .tui-page-btn.tui-first,
+#paginator .tui-page-btn.tui-next-is-ellip,
+#paginator .tui-page-btn.tui-prev-is-ellip,
+#paginator .tui-page-btn.tui-last
+{ 
+    display: none;  
+}
+
+#paginator .tui-page-btn.tui-prev,
+#paginator .tui-page-btn.tui-next{ 
+    min-width: 40px;
+    height: 40px;
+    background: #F7F7F7;
+    border-radius: 5px;
+    border: 0;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+#paginator .tui-page-btn.tui-is-selected {
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+    background: #FF6B08;
+    border-radius: 5px;
+    border: 0;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#paginator a.tui-page-btn {
+    display: block;
+}
+
+
+//  
+//   border: 0;
