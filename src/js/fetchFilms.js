@@ -1,9 +1,7 @@
 import createGallery from '../templates/movies-list.hbs';
 import Notiflix from 'notiflix';
 import notFoundImg from '../jpg/not-found-img.png';
-
 import createPagination from './pagination';
-
 import requestWithKey from './requestWithKey';
 
 const moviesGallery = document.querySelector('.gallery');
@@ -21,8 +19,6 @@ let paginationInstance;
 
 class MovieDB {
   showTrending() {
-    //
-
     Promise.all([getGenres(GENRES_URL), getMovies(TRENDING_URL)])
       .then(res => {
         this.genresArray = res[0];
