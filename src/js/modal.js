@@ -6,7 +6,7 @@ const backdropNode = document.querySelector('.backdrop');
 const modalNode = document.querySelector('.modal-container');
 const modalContentNode = document.querySelector('.modal');
 const moviesGallery = document.querySelector('.gallery');
-const preloader = document.querySelector('.lds-spinner');
+const preloader = document.querySelector('#modal-loader');
 
 const MOVIE_URL = 'https://api.themoviedb.org/3/movie/';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
