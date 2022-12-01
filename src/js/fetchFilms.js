@@ -108,12 +108,17 @@ function findMovies(event) {
         myMoviesDB.showTrending();
         return;
       }
-      showMovies(movies);
-      paginationInstance = createPagination(myMoviesDB.totalMovies);
-      paginationInstance.on('afterMove', event => {
-        const currentPage = event.page;
-        getCurrentPageFromServer(queryRequest, currentPage);
-      });
+      showMovies(movies);      
+      if (myMoviesDB.totalMovies > 20) {        
+        paginationInstance = createPagination(myMoviesDB.totalMovies);
+        paginatorEl.classList.remove('visually-hidden');        
+        paginationInstance.on('afterMove', event => {
+          const currentPage = event.page;
+          getCurrentPageFromServer(queryRequest, currentPage);
+        });
+      }
+      else clearPagination();
+      
     })
     .catch(err => console.log(err));
 }
@@ -131,7 +136,7 @@ function getCurrentPageFromServer(request, currentPage) {
     .catch(err => console.log(err));
 }
 
-function clearPagination() {
-  // paginationInstance.reset(0);
+function clearPagination() {  
   paginatorEl.innerHTML = '';
+  paginatorEl.classList.add('visually-hidden');
 }
