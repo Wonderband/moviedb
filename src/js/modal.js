@@ -3,8 +3,10 @@ import createModal from '../templates/modal.hbs';
 import notFoundImg from '../jpg/not-found-img.png';
 
 const backdropNode = document.querySelector('.backdrop');
-const modalNode = document.querySelector('.modal');
+const modalNode = document.querySelector('.modal-container');
+const modalContentNode = document.querySelector('.modal');
 const moviesGallery = document.querySelector('.gallery');
+const preloader = document.querySelector('.lds-spinner');
 
 const MOVIE_URL = 'https://api.themoviedb.org/3/movie/';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
@@ -18,6 +20,7 @@ moviesGallery.addEventListener('click', event => {
 function onOpenModal(event) {
   event.preventDefault();
   backdropNode.classList.remove('visually-hidden');
+  preloader.classList.remove('visually-hidden');
   const movieID = event.target.closest('.gallery-item').dataset.id;
   getMovie(MOVIE_URL + movieID)
     .then(data => {
@@ -28,6 +31,9 @@ function onOpenModal(event) {
       movieObj.genres = data.genres.map(el => el.name).join(', ');
       movieObj.about =
         data.overview ?? 'Sorry, there is no information about this movie';
+
+      preloader.classList.add('visually-hidden');
+      modalNode.classList.remove('visually-hidden');
       insertIntoModal(createModal(movieObj));
     })
     .catch(err => console.log(err));
@@ -53,14 +59,15 @@ function onKeyDown(event) {
 
 function onCloseModal() {
   backdropNode.classList.add('visually-hidden');
-  modalNode.textContent = '';
+  modalNode.classList.add('visually-hidden');
+  modalContentNode.textContent = '';
 
   document.removeEventListener('keydown', onKeyDown);
   backdropNode.removeEventListener('click', onBackdrop);
 }
 
 function insertIntoModal(movieData) {
-  modalNode.insertAdjacentHTML('beforeend', movieData);
+  modalContentNode.insertAdjacentHTML('beforeend', movieData);
 }
 
 async function getMovie(request) {
