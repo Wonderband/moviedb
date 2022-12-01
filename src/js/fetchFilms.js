@@ -13,7 +13,7 @@ const TRENDING_URL = 'https://api.themoviedb.org/3/trending/movie/week';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
 
-const preloader = document.querySelector('.lds-spinner');
+const preloader = document.querySelector('#search-loader');
 
 let paginationInstance;
 
@@ -54,6 +54,7 @@ myMoviesDB.showTrending();
 submitBtn.addEventListener('click', findMovies);
 
 function showMovies(resultArray) {
+  preloader.classList.add('visually-hidden');
   moviesGallery.insertAdjacentHTML('beforeend', createGallery(resultArray));
 }
 
@@ -81,6 +82,7 @@ async function getGenres(request) {
 
 function findMovies(event) {
   event.preventDefault();
+  preloader.classList.remove('visually-hidden');
   let query = searchForm.elements.searchQuery.value.trim();
   if (!query) {
     Notiflix.Notify.failure('Empty search doesnt work! Back to trending!');
