@@ -5,6 +5,7 @@ import notFoundImg from '../jpg/not-found-img.png';
 const backdropNode = document.querySelector('.backdrop');
 const modalNode = document.querySelector('.modal');
 const moviesGallery = document.querySelector('.gallery');
+const preloader = document.querySelector('.lds-spinner');
 
 const MOVIE_URL = 'https://api.themoviedb.org/3/movie/';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
@@ -28,6 +29,7 @@ function onOpenModal(event) {
       movieObj.genres = data.genres.map(el => el.name).join(', ');
       movieObj.about =
         data.overview ?? 'Sorry, there is no information about this movie';
+      preloader.classList.add('visually-hidden');
       insertIntoModal(createModal(movieObj));
     })
     .catch(err => console.log(err));
@@ -53,6 +55,7 @@ function onKeyDown(event) {
 
 function onCloseModal() {
   backdropNode.classList.add('visually-hidden');
+  preloader.classList.remove('visually-hidden');
   modalNode.textContent = '';
 
   document.removeEventListener('keydown', onKeyDown);
