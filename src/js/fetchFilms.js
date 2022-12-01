@@ -98,6 +98,7 @@ function findMovies(event) {
     .then(movies => {
       clearMovies();
       if (!movies.length) {
+        preloader.classList.add('visually-hidden');
         Notiflix.Notify.failure(
           'Search result not successful. Enter the correct movie name and try again'
         );
