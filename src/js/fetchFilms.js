@@ -102,9 +102,8 @@ function findMovies(event) {
       if (!movies.length) {
         preloader.classList.add('visually-hidden');
         Notiflix.Notify.failure(
-          'Search result not successful. Enter the correct movie name and try again'
-        );
-        console.log('hi');
+          'Search result not successful. Enter the correct movie name and try again'        );
+        
         clearPagination();
         myMoviesDB.showTrending();
         return;
@@ -133,6 +132,6 @@ function getCurrentPageFromServer(request, currentPage) {
 }
 
 function clearPagination() {
-  paginationInstance.reset(0);
+  // paginationInstance.reset(0);
   paginatorEl.innerHTML = '';
 }
