@@ -14,13 +14,12 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
 
 const preloader = document.querySelector('#search-loader');
-const paginatorEl= document.querySelector('#paginator');
+const paginatorEl = document.querySelector('#paginator');
 
 let paginationInstance;
 
 class MovieDB {
   showTrending() {
-
     Promise.all([getGenres(GENRES_URL), getMovies(TRENDING_URL)])
       .then(res => {
         this.genresArray = res[0];
@@ -43,7 +42,8 @@ class MovieDB {
         title: el.title,
         genres: el.genre_ids
           .map(genreId => this.genresArray.find(el => el.id === genreId).name)
-          .slice(0, 2),
+          .slice(0, 2)
+          .join(', '),
         date: el.release_date ? el.release_date.slice(0, 4) : 'XXXX',
         id: el.id,
       };
@@ -104,23 +104,22 @@ function findMovies(event) {
       if (!movies.length) {
         preloader.classList.add('visually-hidden');
         Notiflix.Notify.failure(
-          'Search result not successful. Enter the correct movie name and try again'        );
-        
+          'Search result not successful. Enter the correct movie name and try again'
+        );
+
         clearPagination();
         myMoviesDB.showTrending();
         return;
       }
-      showMovies(movies);      
-      if (myMoviesDB.totalMovies > 20) {        
+      showMovies(movies);
+      if (myMoviesDB.totalMovies > 20) {
         paginationInstance = createPagination(myMoviesDB.totalMovies);
-        paginatorEl.classList.remove('visually-hidden');        
+        paginatorEl.classList.remove('visually-hidden');
         paginationInstance.on('afterMove', event => {
           const currentPage = event.page;
           getCurrentPageFromServer(queryRequest, currentPage);
         });
-      }
-      else clearPagination();
-      
+      } else clearPagination();
     })
     .catch(err => console.log(err));
 }
@@ -138,7 +137,7 @@ function getCurrentPageFromServer(request, currentPage) {
     .catch(err => console.log(err));
 }
 
-function clearPagination() {  
+function clearPagination() {
   paginatorEl.innerHTML = '';
   paginatorEl.classList.add('visually-hidden');
 }
