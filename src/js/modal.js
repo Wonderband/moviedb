@@ -19,6 +19,7 @@ moviesGallery.addEventListener('click', event => {
 
 function onOpenModal(event) {
   event.preventDefault();
+  document.body.classList.add('noScroll');
   backdropNode.classList.remove('visually-hidden');
   preloader.classList.remove('visually-hidden');
   const movieID = event.target.closest('.gallery-item').dataset.id;
@@ -45,7 +46,7 @@ function onOpenModal(event) {
 function onBackdrop(event) {
   if (
     event.target.closest('.close-button') ||
-    event.target.closest('.backdrop')
+    event.target.classList.contains('backdrop')
   ) {
     onCloseModal();
   }
@@ -58,6 +59,7 @@ function onKeyDown(event) {
 }
 
 function onCloseModal() {
+  document.body.classList.remove('noScroll');
   backdropNode.classList.add('visually-hidden');
   modalNode.classList.add('visually-hidden');
   modalContentNode.textContent = '';
