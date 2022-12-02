@@ -26,6 +26,7 @@ function onOpenModal(event) {
   getMovie(MOVIE_URL + movieID)
     .then(data => {
       const movieObj = { ...data };
+      movieObj.vote_average = data.vote_average.toFixed(1);
       movieObj.poster = data.poster_path
         ? IMG_URL + data.poster_path
         : notFoundImg;
