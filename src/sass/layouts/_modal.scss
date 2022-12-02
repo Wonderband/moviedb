@@ -7,9 +7,19 @@
   height: 100%;
   padding: 20px;
 
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   visibility: visible;
   opacity: 1;
+}
+
+#modal-loader {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#modal-loader div:after {
+  background: white;
 }
 
 .modal-container {
