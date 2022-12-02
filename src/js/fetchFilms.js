@@ -14,11 +14,13 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
 
 const preloader = document.querySelector('#search-loader');
+const paginatorEl= document.querySelector('#paginator');
 
 let paginationInstance;
 
 class MovieDB {
   showTrending() {
+
     Promise.all([getGenres(GENRES_URL), getMovies(TRENDING_URL)])
       .then(res => {
         this.genresArray = res[0];
@@ -51,6 +53,7 @@ class MovieDB {
 
 const myMoviesDB = new MovieDB();
 myMoviesDB.showTrending();
+clearPagination();
 submitBtn.addEventListener('click', findMovies);
 
 function showMovies(resultArray) {
@@ -87,6 +90,7 @@ function findMovies(event) {
   if (!query) {
     Notiflix.Notify.failure('Empty search doesnt work! Back to trending!');
     clearMovies();
+    clearPagination();
     myMoviesDB.showTrending();
     return;
   }
@@ -100,16 +104,23 @@ function findMovies(event) {
       if (!movies.length) {
         preloader.classList.add('visually-hidden');
         Notiflix.Notify.failure(
-          'Search result not successful. Enter the correct movie name and try again'
-        );
+          'Search result not successful. Enter the correct movie name and try again'        );
+        
+        clearPagination();
+        myMoviesDB.showTrending();
         return;
       }
-      showMovies(movies);
-      paginationInstance = createPagination(myMoviesDB.totalMovies);
-      paginationInstance.on('afterMove', event => {
-        const currentPage = event.page;
-        getCurrentPageFromServer(queryRequest, currentPage);
-      });
+      showMovies(movies);      
+      if (myMoviesDB.totalMovies > 20) {        
+        paginationInstance = createPagination(myMoviesDB.totalMovies);
+        paginatorEl.classList.remove('visually-hidden');        
+        paginationInstance.on('afterMove', event => {
+          const currentPage = event.page;
+          getCurrentPageFromServer(queryRequest, currentPage);
+        });
+      }
+      else clearPagination();
+      
     })
     .catch(err => console.log(err));
 }
@@ -125,4 +136,9 @@ function getCurrentPageFromServer(request, currentPage) {
       showMovies(movies);
     })
     .catch(err => console.log(err));
+}
+
+function clearPagination() {  
+  paginatorEl.innerHTML = '';
+  paginatorEl.classList.add('visually-hidden');
 }
