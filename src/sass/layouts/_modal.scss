@@ -23,6 +23,7 @@
 }
 
 .modal-container {
+  font-weight: 500;
   max-height: 100vh;
   overflow: auto;
   width: 100%;
@@ -85,12 +86,11 @@
 
 .meta-item {
   display: flex;
-  gap: 0;
+  gap: 20px;
   margin: 8px;
 }
 
 .modal__button {
-  font-weight: 500;
   width: 110px;
   padding: 6px 13px;
   border-radius: 5px;
