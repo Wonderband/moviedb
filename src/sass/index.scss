@@ -4,7 +4,6 @@
 @import './base/reset.scss';
 @import './base/body.scss';
 
-@import './utils/visually-hidden.scss';
 @import './utils/mixins.scss';
 
 @import './components/container.scss';
@@ -12,6 +11,8 @@
 @import './components/loader.scss';
 @import './components/modal.scss';
 @import './components/movie-card-style.scss';
+
+@import './utils/visually-hidden.scss';
 
 @import './layouts/header.scss';
 @import './layouts/lib-header.scss';
