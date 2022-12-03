@@ -44,7 +44,7 @@ class MovieDB {
         title: el.title,
         genres: el.genre_ids
           .map(genreId => this.genresArray.find(el => el.id === genreId).name)
-          .slice(0, 2)
+          .slice(0, 3)
           .join(', '),
         date: el.release_date ? el.release_date.slice(0, 4) : 'XXXX',
         id: el.id,
