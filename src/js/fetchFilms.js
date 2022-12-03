@@ -17,6 +17,7 @@ const preloader = document.querySelector('#search-loader');
 const paginatorEl = document.querySelector('#paginator');
 
 let paginationInstance;
+let queryGlobal;
 
 class MovieDB {
   showTrending() {
@@ -113,14 +114,8 @@ function findMovies(event) {
         return;
       }
       showMovies(movies);
-      if (myMoviesDB.totalMovies > 20) {
-        paginationInstance = createPagination(myMoviesDB.totalMovies);        
-        paginatorEl.classList.remove('visually-hidden');
-        paginationInstance.on('afterMove', event => {
-          const currentPage = event.page;
-          getCurrentPageFromServer(queryRequest, currentPage);
-        });
-      } else clearPagination();
+      showPagination(queryRequest, 1);  
+      queryGlobal = queryRequest;    
     })
     .catch(err => console.log(err));
 }
@@ -143,10 +138,25 @@ function clearPagination() {
   paginatorEl.classList.add('visually-hidden');
 }
 
-function onChangeWindowSize() {  
+function onChangeWindowSize() {    
   if (paginationInstance) {
-    if (window.innerWidth < 768 && paginationInstance._options.visiblePages === 9 || 
-      window.innerWidth >= 768 && paginationInstance._options.visiblePages === 5)
-      paginationInstance = createPagination(myMoviesDB.totalMovies);
+    if ( window.innerWidth < 768 && paginationInstance._options.visiblePages === 9 ||
+      window.innerWidth >= 768 && paginationInstance._options.visiblePages === 5 )
+      { const currentPage = paginationInstance._currentPage;
+        clearPagination();
+        showPagination(queryGlobal, currentPage);        
+      }        
   }
+}
+
+function showPagination(query, page) {
+  if (myMoviesDB.totalMovies > 20) {
+    paginationInstance = createPagination(myMoviesDB.totalMovies);  
+    paginationInstance.movePageTo(page);      
+    paginatorEl.classList.remove('visually-hidden');   
+    paginationInstance.on('afterMove', event => {
+      const currentPage = event.page;      
+      getCurrentPageFromServer(query, currentPage);
+    });
+  } else clearPagination();
 }
