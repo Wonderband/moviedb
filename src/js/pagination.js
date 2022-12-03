@@ -6,7 +6,7 @@ const bodyEl = document.querySelector('body');
 export default  total => {
     let pagesVisible = 5;    
     if ((bodyEl.clientWidth >= 768))
-        pagesVisible = 9;        
+        pagesVisible = 7;        
       
     const options = {
         totalItems: total,
