@@ -1,0 +1,33 @@
+.gallery-item .movie__link
+ {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.movie__poster {
+    max-height: 402px;
+    margin-bottom: 10px;
+}
+
+.movie__link .movie__title {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.movie__link .movie__info {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FF6B08;
+
+}
