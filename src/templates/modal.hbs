@@ -1,5 +1,4 @@
-{{!-- {{#each this}} --}}
-<a class='modal__link' href='#' data-id='{{this.id}}'>
+<a class='modal__link' href='#'>
   <img
     class='modal__poster'
     src='{{this.poster}}'
@@ -22,9 +21,20 @@
     <li class='meta-item'><span class='meta-item__title'>Genre</span><span
       >{{this.genres}}</span></li>
   </ul>
-  <div class='meta-about'>
-    <p class='meta-about__title'>ABOUT</p>
-    <p>{{this.about}}</p>
-  </div>
+  <p>ABOUT</p>
+  <p>{{this.about}}</p>
+  <button
+    type='button'
+    class='modal__button add-to-watched'
+    data-id='{{this.id}}'
+  >
+    ADD TO WATCHED
+  </button>
+  <button
+    type='button'
+    class='modal__button add-to-queue'
+    data-id='{{this.id}}'
+  >
+    ADD TO QUEUE
+  </button>
 </div>
-{{!-- {{/each}} --}}
