@@ -7,14 +7,17 @@
 
     @media screen and (min-width: 768px) {
         max-width: 374px;   
-    }        
-    // .paginator {
-//   @include mobile {
-//     padding: 0 0 20px;
-//   }
-//   @include tablet {
-//     padding: 0 0 60px;
-//   }
+    }    
+}
+
+.paginator {
+    
+      @include mobile {
+        padding: 0 0 20px;
+      }
+      @include tablet {
+        padding: 0 0 60px;
+      }
 }
 
 #paginator .tui-page-btn.tui-first,
@@ -30,8 +33,7 @@
   height: 40px;
   background: #f7f7f7;
   border-radius: 5px;
-  border: 0;
-  // margin-right: 20px;
+  border: 0;  
   display: flex;
   justify-content: center;
   align-items: center;
