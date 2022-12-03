@@ -142,7 +142,7 @@ function clearPagination() {
 
 function onChangeWindowSize() {    
   if (paginationInstance) {
-    if ( window.innerWidth < 768 && paginationInstance._options.visiblePages === 9 ||
+    if ( window.innerWidth < 768 && paginationInstance._options.visiblePages === 7 ||
       window.innerWidth >= 768 && paginationInstance._options.visiblePages === 5 )
       { const currentPage = paginationInstance._currentPage;
         clearPagination();
