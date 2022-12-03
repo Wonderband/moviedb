@@ -55,6 +55,7 @@ const myMoviesDB = new MovieDB();
 myMoviesDB.showTrending();
 clearPagination();
 submitBtn.addEventListener('click', findMovies);
+window.onresize = onChangeWindowSize;
 
 function showMovies(resultArray) {
   preloader.classList.add('visually-hidden');
@@ -113,7 +114,7 @@ function findMovies(event) {
       }
       showMovies(movies);
       if (myMoviesDB.totalMovies > 20) {
-        paginationInstance = createPagination(myMoviesDB.totalMovies);
+        paginationInstance = createPagination(myMoviesDB.totalMovies);        
         paginatorEl.classList.remove('visually-hidden');
         paginationInstance.on('afterMove', event => {
           const currentPage = event.page;
@@ -140,4 +141,12 @@ function getCurrentPageFromServer(request, currentPage) {
 function clearPagination() {
   paginatorEl.innerHTML = '';
   paginatorEl.classList.add('visually-hidden');
+}
+
+function onChangeWindowSize() {  
+  if (paginationInstance) {
+    if (window.innerWidth < 768 && paginationInstance._options.visiblePages === 9 || 
+      window.innerWidth >= 768 && paginationInstance._options.visiblePages === 5)
+      paginationInstance = createPagination(myMoviesDB.totalMovies);
+  }
 }
