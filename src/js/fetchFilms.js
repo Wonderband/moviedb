@@ -15,8 +15,10 @@ const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
 
 const preloader = document.querySelector('#search-loader');
 const paginatorEl = document.querySelector('#paginator');
+const paginationSection = document.querySelector('.paginator')
 
 let paginationInstance;
+let queryGlobal;
 
 class MovieDB {
   showTrending() {
@@ -55,6 +57,7 @@ const myMoviesDB = new MovieDB();
 myMoviesDB.showTrending();
 clearPagination();
 submitBtn.addEventListener('click', findMovies);
+window.onresize = onChangeWindowSize;
 
 function showMovies(resultArray) {
   preloader.classList.add('visually-hidden');
@@ -112,14 +115,8 @@ function findMovies(event) {
         return;
       }
       showMovies(movies);
-      if (myMoviesDB.totalMovies > 20) {
-        paginationInstance = createPagination(myMoviesDB.totalMovies);
-        paginatorEl.classList.remove('visually-hidden');
-        paginationInstance.on('afterMove', event => {
-          const currentPage = event.page;
-          getCurrentPageFromServer(queryRequest, currentPage);
-        });
-      } else clearPagination();
+      showPagination(queryRequest, 1);  
+      queryGlobal = queryRequest;    
     })
     .catch(err => console.log(err));
 }
@@ -140,4 +137,29 @@ function getCurrentPageFromServer(request, currentPage) {
 function clearPagination() {
   paginatorEl.innerHTML = '';
   paginatorEl.classList.add('visually-hidden');
+  paginationSection.classList.add('visually-hidden');
+}
+
+function onChangeWindowSize() {    
+  if (paginationInstance) {
+    if ( window.innerWidth < 768 && paginationInstance._options.visiblePages === 9 ||
+      window.innerWidth >= 768 && paginationInstance._options.visiblePages === 5 )
+      { const currentPage = paginationInstance._currentPage;
+        clearPagination();
+        showPagination(queryGlobal, currentPage);        
+      }        
+  }
+}
+
+function showPagination(query, page) {
+  if (myMoviesDB.totalMovies > 20) {
+    paginationInstance = createPagination(myMoviesDB.totalMovies);  
+    paginationInstance.movePageTo(page);      
+    paginatorEl.classList.remove('visually-hidden'); 
+    paginationSection.classList.remove('visually-hidden');    
+    paginationInstance.on('afterMove', event => {
+      const currentPage = event.page;      
+      getCurrentPageFromServer(query, currentPage);
+    });
+  } else clearPagination();
 }

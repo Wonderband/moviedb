@@ -1,9 +1,11 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
+const bodyEl = document.querySelector('body');
+
 export default  total => {
-    let pagesVisible = 5;
-    if ((window.screen.width >= 768))
+    let pagesVisible = 5;    
+    if ((bodyEl.clientWidth >= 768))
         pagesVisible = 9;        
       
     const options = {
