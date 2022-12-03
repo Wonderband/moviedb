@@ -27,6 +27,7 @@ function onOpenModal(event) {
     .then(data => {
       const movieObj = { ...data };
       movieObj.vote_average = data.vote_average.toFixed(1);
+      movieObj.popularity = data.popularity.toFixed(1);
       movieObj.poster = data.poster_path
         ? IMG_URL + data.poster_path
         : notFoundImg;

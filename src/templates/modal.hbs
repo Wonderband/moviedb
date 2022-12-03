@@ -1,5 +1,5 @@
 {{!-- {{#each this}} --}}
-<a class='modal__link' href='#'  data-id='{{this.id}}'>
+<a class='modal__link' href='#' data-id='{{this.id}}'>
   <img
     class='modal__poster'
     src='{{this.poster}}'
@@ -10,16 +10,21 @@
 <h3 class='modal__title'>{{this.title}}</h3>
 <div class='modal__meta'>
   <ul class='meta-list'>
-    <li class='meta-item'><span>Vote/Votes</span><span
-      >{{this.vote_average}}/{{this.vote_count}}</span></li>
-    <li class='meta-item'><span>Popularity</span>{{this.popularity}}<span
-      ></span></li>
+    <li class='meta-item'><span class='meta-item__title'>Vote/Votes</span><span
+      >{{this.vote_average}}</span><span>{{this.vote_count}}</span></li>
+    <li class='meta-item'><span class='meta-item__title'>Popularity</span><span
+      >{{this.popularity}}</span></li>
     <li class='meta-item'>
-      <span>Original Title</span>{{this.original_title}}<span></span>
+      <span class='meta-item__title'>Original Title</span><span
+        class='meta-item__original_title'
+      >{{this.original_title}}</span>
     </li>
-    <li class='meta-item'><span>Genre</span><span>{{this.genres}}</span></li>
+    <li class='meta-item'><span class='meta-item__title'>Genre</span><span
+      >{{this.genres}}</span></li>
   </ul>
-  <p>ABOUT</p>
-  <p>{{this.about}}</p>
+  <div class='meta-about'>
+    <p class='meta-about__title'>ABOUT</p>
+    <p>{{this.about}}</p>
+  </div>
 </div>
 {{!-- {{/each}} --}}

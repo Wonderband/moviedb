@@ -23,6 +23,8 @@
 }
 
 .modal-container {
+  line-height: 1.6;
+  font-weight: 500;
   max-height: 100vh;
   overflow: auto;
   width: 100%;
@@ -85,12 +87,33 @@
 
 .meta-item {
   display: flex;
-  gap: 0;
-  margin: 8px;
+  gap: 20px;
+  margin: 8px 0;
+}
+
+.meta-item__title {
+  color: $ternary-color;
+}
+
+.meta-item__original_title {
+  text-transform: uppercase;
+}
+
+.meta-about {
+  margin: 20px 0;
+}
+
+.meta-about__title {
+  margin-bottom: 8px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
 }
 
 .modal__button {
-  font-weight: 500;
   width: 110px;
   padding: 6px 13px;
   border-radius: 5px;
