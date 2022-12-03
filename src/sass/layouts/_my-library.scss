@@ -1,0 +1,8 @@
+.my-library {
+  @include mobile {
+    padding: 20px 0;
+  }
+  @include tablet {
+    padding: 60px 0;
+  }
+}

@@ -1,20 +1,48 @@
 import createGallery from '../templates/lib-movie-li.hbs';
-const pushMeBtn = document.querySelector('.test');
+const watchedBtn = document.querySelector('.watched');
+const queueBtn = document.querySelector('.queue');
 const galleryEl = document.querySelector('.gallery');
 
-async function onPushMeBtnClick() {
-  const array = JSON.parse(localStorage.getItem('watchedArray'));
-  console.dir(array);
-  const arrayOfPromises = array.map(async filmId => {
+async function FilmsLoader(target) {
+  let key;
+  if (target.classList.contains('watched')) {
+    key = 'watchedArray';
+  } else {
+    key = 'queueArray';
+  }
+  const idArray = JSON.parse(localStorage.getItem(key));
+  const arrayOfPromises = idArray.map(async filmId => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${filmId}?api_key=0fd1ddf45233c721325ad47f082cd332` //&append_to_response=videos,images&language=en`
     );
     return response.json();
   });
-  const films = await Promise.all(arrayOfPromises);
-  console.dir(films);
-
-  galleryEl.innerHTML = createGallery(films);
+  const filmsArray = await Promise.all(arrayOfPromises);
+  galleryEl.innerHTML = createGallery(filmsArray);
 }
 
-pushMeBtn.addEventListener('click', onPushMeBtnClick);
+FilmsLoader(watchedBtn);
+
+function currentBtnTogler(target) {
+  if (!target.classList.contains('current-button')) {
+    const childrenObj = target.parentElement.children;
+    for (const key in childrenObj) {
+      if (Object.hasOwnProperty.call(childrenObj, key)) {
+        if (childrenObj[key].classList.contains('current-button')) {
+          childrenObj[key].classList.remove('current-button');
+        } else {
+          childrenObj[key].classList.add('current-button');
+        }
+      }
+    }
+  }
+}
+
+function onLibraryBtnClick(event) {
+  const { target } = event;
+  currentBtnTogler(target);
+  FilmsLoader(target);
+}
+
+watchedBtn.addEventListener('click', onLibraryBtnClick);
+queueBtn.addEventListener('click', onLibraryBtnClick);

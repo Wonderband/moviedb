@@ -117,6 +117,9 @@
   width: 110px;
   padding: 6px 13px;
   border-radius: 5px;
+  color: black;
+  background-color: transparent;
+  border: 2px solid black;
 }
 
 .button-highlighted {
@@ -125,8 +128,8 @@
   border: 2px solid $accent-color;
 }
 
-.button-bordered {
-  color: black;
-  background-color: transparent;
-  border: 2px solid black;
-}
+// .button-bordered {
+//   color: black;
+//   background-color: transparent;
+//   border: 2px solid black;
+// }
