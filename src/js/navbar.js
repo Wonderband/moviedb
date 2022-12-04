@@ -29,12 +29,12 @@ function signOut() {
 window.onload = function () {
     getUsername();
     if (currentUser == null) {
-        userlink.innerText = 'Create New Account';
+        userlink.innerText = 'CREATE NEW ACCOUNT';
         userlink.classList.replace("nav-link", "nav-btn");
         userlink.classList.add("nav-btn-outline-primary");
         userlink.href = 'register.html';
 
-        signoutlink.innerText = 'Login';
+        signoutlink.innerText = 'LOGIN';
         signoutlink.classList.replace("nav-link", "nav-btn");
         signoutlink.classList.add("nav-btn-login");
         signoutlink.href = 'login.html';
@@ -47,7 +47,7 @@ window.onload = function () {
         userlink.classList.remove("nav-btn-outline-primary");
         userlink.href = '#';
 
-        signoutlink.innerText = 'Sign Out';
+        signoutlink.innerText = 'SIGN OUT';
         // signoutlink.classList.replace("nav-btn", "nav-link");
         signoutlink.classList.replace("nav-btn-login", "nav-btn-signout");
         // signoutlink.classList.remove("nav-btn-login");
