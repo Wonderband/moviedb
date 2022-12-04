@@ -3,6 +3,7 @@ import Handlebars from 'handlebars';
 const watchedBtn = document.querySelector('.watched');
 const queueBtn = document.querySelector('.queue');
 const galleryEl = document.querySelector('.gallery');
+const preloader = document.querySelector('#lib-loader');
 
 Handlebars.registerHelper('roundingData', data => {
   return data.slice(0, 4);
@@ -20,6 +21,7 @@ Handlebars.registerHelper('roundingRating', rating => {
 });
 
 async function FilmsLoader(target) {
+  preloader.classList.remove('visually-hidden');
   let key;
   if (target.classList.contains('watched')) {
     key = 'watchedArray';
@@ -35,12 +37,15 @@ async function FilmsLoader(target) {
   });
   const filmsArray = await Promise.all(arrayOfPromises);
   console.dir(filmsArray);
+  preloader.classList.add('visually-hidden');
   galleryEl.innerHTML = createGallery(filmsArray);
 }
 
 FilmsLoader(watchedBtn);
 
 function currentBtnTogler(target) {
+  galleryEl.textContent = '';
+  preloader.classList.remove('visually-hidden');
   if (!target.classList.contains('current-button')) {
     const childrenObj = target.parentElement.children;
     for (const key in childrenObj) {
