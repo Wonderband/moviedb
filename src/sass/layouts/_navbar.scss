@@ -1,4 +1,16 @@
 .navbar {
+  max-width: 480px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+    background-color: #2b2f3a;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1280px;
+    background-color: #2b2f3a;
+  }
+
   background-color: #2b2f3a;
   color: #fff;
 }
@@ -26,15 +38,16 @@
   display: block;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: #000;
+  background-color: #2b2f3a;
 }
 
 .nav-btn-outline-primary {
-  background-color: blue;
+  border: 1px solid red;
+  // background-color: blue;
 }
 
 .nav-btn-login {
-  background-color: green;
+  background-color: $accent-color;
 }
 .nav-btn-signout {
   background-color: red;
