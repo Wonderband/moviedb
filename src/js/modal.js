@@ -88,6 +88,7 @@ async function getMovie(request) {
     throw new Error(err);
   }
 }
+
 function onModalBtnClick(event) {
   const { target } = event;
   const filmId = target.dataset.id;
@@ -107,6 +108,7 @@ function onModalBtnClick(event) {
     }
   }
 }
+
 function btnStyleChecker(btn1, btn2) {
   if (localStorage.getItem('watchedArray')) {
     const array = JSON.parse(localStorage.getItem('watchedArray'));
