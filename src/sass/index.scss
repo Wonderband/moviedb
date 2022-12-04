@@ -1,19 +1,24 @@
 @import './base/google-fonts.scss';
 @import './base/modern-normalize.scss';
 @import './base/variables.scss';
-@import './base/body.scss';
 @import './base/reset.scss';
+@import './base/body.scss';
+
+@import './utils/mixins.scss';
 
 @import './components/container.scss';
+@import './components/pagination.scss';
+@import './components/loader.scss';
+@import './components/modal.scss';
+@import './components/movie-card-style.scss';
 
 @import './utils/visually-hidden.scss';
-@import './utils/mixins.scss';
 
 @import './layouts/header.scss';
 @import './layouts/lib-header.scss';
 @import './layouts/gallery.scss';
-@import './layouts/container.scss';
 @import './layouts/footer.scss';
+@import './layouts/my-library.scss';
 
 @import './node_modules/bootstrap/scss/bootstrap';
 @import './layouts/auth-form';

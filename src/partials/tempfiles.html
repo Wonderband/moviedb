@@ -1,0 +1,447 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./sass/index.scss" />
+  </head>
+  <body class="auth-form">
+    <div class="mb-5">
+      <h3 class="mb-3">Sign Up</h3>
+      <input
+        type="name"
+        placeholder="Fullname"
+        id="nameInp"
+        class="form-control mb-3"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        id="emailInp"
+        class="form-control mb-3"
+      />
+      <input
+        type="username"
+        placeholder="Username"
+        id="userInp"
+        class="form-control mb-3"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        id="passInp"
+        class="form-control mb-3"
+      />
+      <button
+        type="submit"
+        id="sub_signup_btn"
+        class="btn btn-outline-primary mb-3 w-100"
+      >
+        Sign Up
+      </button>
+      <a href="login.html" class="btn btn-secondary btn-sm py-1 w-100"
+        >Already Have An Account?</a
+      >
+    </div>
+
+    <!-- <script type="module" src="./index.js"></script> -->
+    <script type="module" src="./js/signup.js"></script>
+  </body>
+</html>
+
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./sass/index.scss" />
+  </head>
+  <body class="auth-form">
+    <div class="mb-5">
+      <h3 class="mb-3">Log In</h3>
+      <input
+        type="username"
+        placeholder="Username"
+        id="userInp"
+        class="form-control mb-3"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        id="passInp"
+        class="form-control mb-3"
+      />
+      <div class="form-check form-switch mb-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Keep me Logged In</label
+        >
+      </div>
+      <button
+        type="submit"
+        id="sub_login_btn"
+        class="btn btn-outline-primary mb-3 w-100"
+      >
+        Log In
+      </button>
+      <a href="register.html" class="btn btn-secondary btn-sm py-1 w-100"
+        >Want to Create a New Account?</a
+      >
+    </div>
+    </div>
+        <!-- <script type="module" src="./index.js"></script> -->
+        <script type="module" src="./js/login.js"></script>
+  </body>
+</html>
+
+
+<!-- header.html -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex" role="search">
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <h3 id="hh"></h3>
+          <li class="nav-item">
+            <a
+              id="userlink"
+              class="nav-link active"
+              aria-current="page"
+              href="#"
+              >Username</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              id="signoutlink"
+              class="nav-link active"
+              aria-current="page"
+              href="#"
+              >Sign Out</a
+            >
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+<!-- JS -->
+
+<!-- index.js -->
+import './js/navbar.js';
+
+<!-- navbar.js -->
+
+
+let userlink = document.querySelector('#userlink');
+let signoutlink = document.querySelector('#signoutlink');
+let header = document.querySelector('#hh');
+let currentUser = null;
+
+function getUsername() {
+    let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+    if (keepLoggedIn == "yes") {
+        currentUser = JSON.parse(localStorage.getItem('user'));
+    }
+
+    else {
+        currentUser = JSON.parse(sessionStorage.getItem("user"));
+    }
+}
+ 
+function signOut() {
+    sessionStorage.removeItem('user');
+    localStorage.removeItem('user');
+    localStorage.removeItem('keepLoggedIn');
+    window.location = 'index.html';
+}
+
+// --------------------------------WINDOWS LOADS------------------------------- // 
+
+window.onload = function () {
+    getUsername();
+    if (currentUser == null) {
+        userlink.innerText = 'Create New Account';
+        userlink.classList.replace("nav-link", "btn");
+        userlink.classList.add("btn-outline-primary");
+        userlink.href = 'register.html';
+
+        signoutlink.innerText = 'Login';
+        signoutlink.classList.replace("nav-link", "btn");
+        signoutlink.classList.add("btn-success");
+        signoutlink.href = 'login.html';
+    }
+
+    else {
+        userlink.innerText = currentUser.username;
+        header.innerText = "Welcome " + currentUser.fullname;
+        userlink.classList.replace("btn", "nav-link");
+        userlink.classList.remove("btn-outline-primary");
+        // userlink.href = '#';
+
+        signoutlink.innerText = 'Sign Out';
+        signoutlink.classList.replace("btn", "nav-link");
+        signoutlink.classList.remove("btn-success");
+        signoutlink.addEventListener('click', signOut)
+
+    }
+}
+
+<!-- signup.js -->
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, set, child, get } from "firebase/database";
+import CryptoJS, { enc } from "crypto-js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC_AoWR6sIw9yYqEcm5_Le0FK59RgGenNY",
+  authDomain: "filmoteka-js-c90cd.firebaseapp.com",
+  databaseURL: "https://filmoteka-js-c90cd-default-rtdb.firebaseio.com",
+  projectId: "filmoteka-js-c90cd",
+  storageBucket: "filmoteka-js-c90cd.appspot.com",
+  messagingSenderId: "542180533478",
+  appId: "1:542180533478:web:cc24636cc3211b9b060727",
+  measurementId: "G-04MJBK1QWZ"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const database = getDatabase();
+
+
+// -----------------------------THE REFERENCES----------------------------- // 
+
+// SIGN UP
+const name = document.querySelector('#nameInp');
+const email = document.querySelector('#emailInp');
+const username = document.querySelector('#userInp');
+const password = document.querySelector('#passInp');
+const subSignUp = document.querySelector('#sub_signup_btn');
+
+console.log(subSignUp)
+
+
+
+// -------------------------------VALIDATION------------------------------- // 
+
+function isEmptyOrSpaces(str) {
+    return str === null || str.match(/^ *$/) !== null;
+}
+
+function validation() {
+    let nameregex = /^[a-zA-Z\s]+$/;
+    let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook)\.com$/;
+    let userregex = /^[a-zA-Z0-9]{5,}$/;
+
+    if (isEmptyOrSpaces(name.value) || isEmptyOrSpaces(email.value) || isEmptyOrSpaces(username.value) || isEmptyOrSpaces(password.value)) {
+        alert("You can't left any field empty");
+        return false;
+    }
+
+    if (!nameregex.test(name.value)) {
+        alert("The name should only contain alphabets!");
+        return false;
+    }
+
+    if (!emailregex.test(email.value)) {
+        alert("Enter a valid email!");
+        return false;
+    }
+
+    if (!userregex.test(username.value)) {
+        alert("-username can only be alphanumeric\n-username must be aleast 5 characters\n-username cannot contain spaces");
+        return false;
+    }
+
+    return true;
+}
+
+
+// ------------------------REGISTER USER TO FIREBASE------------------------- // 
+
+function registerUser() {
+    if (!validation()) {
+        return;
+    };
+    const databaseRef = ref(database);
+
+    get(child(databaseRef, `UsersLists/${username.value}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            alert("Account already exists!");
+        }
+
+        else {
+            set(ref(database, 'UsersLists/'+username.value),
+                {
+                    fullname: name.value,
+                    email: email.value,
+                    username: username.value,
+                    password: encPass()
+                })
+                .then(() => {
+                    alert("User added successfully");
+                    window.location = "login.html";
+                })
+                .catch(() => {
+                    alert("error" + error);
+                })
+        }
+    });
+}
+
+// -------------------------------ENCRIPTION-------------------------------- // 
+function encPass() {
+    let pass12 = CryptoJS.AES.encrypt(password.value, password.value);
+    return pass12.toString()
+}
+
+// ----------------------------ASSIGN THE EVENTS----------------------------- // 
+
+subSignUp.addEventListener('click', registerUser);
+
+
+<!-- login.js -->
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, set, child, get, enableLogging } from "firebase/database";
+import CryptoJS from "crypto-js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC_AoWR6sIw9yYqEcm5_Le0FK59RgGenNY",
+  authDomain: "filmoteka-js-c90cd.firebaseapp.com",
+  databaseURL: "https://filmoteka-js-c90cd-default-rtdb.firebaseio.com",
+  projectId: "filmoteka-js-c90cd",
+  storageBucket: "filmoteka-js-c90cd.appspot.com",
+  messagingSenderId: "542180533478",
+  appId: "1:542180533478:web:cc24636cc3211b9b060727",
+  measurementId: "G-04MJBK1QWZ"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getDatabase();
+
+
+// -----------------------------THE REFERENCES----------------------------- // 
+
+// LOG IN
+const username = document.querySelector('#userInp');
+const password = document.querySelector('#passInp');
+const subLogIn = document.querySelector('#sub_login_btn');
+console.log(subLogIn)
+
+
+// -------------------------AUTHENTICATION PROCESS------------------------- // 
+
+function authUser() {
+    const dbRef = ref(db);
+    get(child(dbRef, 'UsersLists/' + username.value)).then((snapshot) => {
+        if (snapshot.exists()) {
+            let dbpass = decPass(snapshot.val().password);
+            console.log(snapshot.val().password)
+            console.log(dbpass)
+            console.log(password.value)
+            if (dbpass == password.value) {
+                login(snapshot.val());
+            }
+            
+            else {
+                alert("Username or password is invalid");       
+            }
+        }
+
+        else {
+            alert("User does not exist!");
+        }
+
+    });
+}
+
+
+// -------------------------DECRYPTION PROCESS------------------------- // 
+
+function decPass(dbpass) {
+    let pass12 = CryptoJS.AES.decrypt(dbpass, password.value);
+    return pass12.toString(CryptoJS.enc.Utf8);
+}
+
+// --------------------------------LOGIN------------------------------- // 
+
+function login(user) {
+    let keepLoggedIn = document.querySelector("#flexSwitchCheckDefault").checked;
+
+    if (!keepLoggedIn) {
+        sessionStorage.setItem('user', JSON.stringify(user));
+        window.location = "index.html";
+    }
+
+    else {
+        localStorage.setItem('keepLoggedIn', 'yes');
+        localStorage.setItem('user', JSON.stringify(user));
+        window.location = "index.html";
+    }
+}
+
+// ----------------------------ASSIGN THE EVENTS----------------------------- // 
+
+subLogIn.addEventListener('click', authUser);
+
+
+
+<!-- CSS -->
+
+<!-- index.scss -->
+@import './node_modules/bootstrap/scss/bootstrap';
+@import './layouts/auth-form';
+
+<!-- _auth-form.scss -->
+.auth-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+
+<!-- package.json -->
+
+dependencies:
+
+    "bootstrap": "^5.2.3",
+    "crypto-js": "^4.1.1",
+    "firebase": "^9.14.0",
+
+    <!-- package-lock.json -->
+
+    "packages" {
+        "":
+            dependencies:
+
+                "bootstrap": "^5.2.3",
+                "crypto-js": "^4.1.1",
+                "firebase": "^9.14.0",
+    }

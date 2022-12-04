@@ -19,12 +19,13 @@
   },
   "dependencies": {
     "axios": "^1.2.0",
-    "bootstrap": "^5.2.3",
-    "crypto-js": "^4.1.1",
-    "firebase": "^9.14.0",
+    "handlebars": "^4.7.7",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.5",
-    "tui-pagination": "^3.4.1"
+    "tui-pagination": "^3.4.1",
+    "bootstrap": "^5.2.3",
+    "crypto-js": "^4.1.1",
+    "firebase": "^9.14.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",

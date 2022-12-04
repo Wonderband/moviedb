@@ -1,0 +1,16 @@
+{{#each this}}
+<li class='gallery-item' data-id='{{this.id}}'>
+    <a class='movie__link' href='#'>
+        {{#if this.poster_path}}
+        <img class='movie__poster' src='https://image.tmdb.org/t/p/w500/{{this.poster_path}}' alt='Movie poster'
+            loading='lazy' />
+        {{/if}}
+        {{#unless this.poster_path}}
+        <img class='movie__poster' src='https://dummyimage.com/500x750/ffffff/000000.png&text=++IMAGE+NOT+FOUND' alt='Movie poster'
+            loading='lazy' />
+        {{/unless}}
+        <h2 class='movie__title'>{{this.title}}</h2>
+        <p class='movie__info'>{{concatenateGenres this.genres}} | {{ roundingData this.release_date}} <span class="movie__rating">{{roundingRating this.vote_average}}</span></p>
+    </a>
+</li>
+{{/each}}
