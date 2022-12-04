@@ -1,4 +1,16 @@
 .navbar {
+  max-width: 480px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+    background-color: #2b2f3a;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1280px;
+    background-color: #2b2f3a;
+  }
+
   background-color: #2b2f3a;
   color: #fff;
 }
