@@ -24,7 +24,7 @@
 }
 
 .modal-container {
-  line-height: 1.6;
+  line-height: 1.5;
   font-weight: 500;
   max-height: 100vh;
   overflow: auto;
@@ -33,8 +33,7 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  transform: scale(1);
-
+  // transform: scale(1);
   padding: 48px 20px 40px 20px;
 
   background: white;
@@ -52,9 +51,16 @@
     transform: translate(-50%, -50%);
   }
 
+  @include tablet {
+    min-width: 704px;
+    min-height: 552px;
+    padding: 40px 36px;
+  }
+
   @include desktop {
-    min-width: 528px;
-    min-height: 581px;
+    min-width: 806px;
+    min-height: 558px;
+    padding: 40px 12px;
   }
 }
 
@@ -69,17 +75,51 @@
 //   }
 // }
 
+.modal {
+  @include tablet {
+    display: flex;
+    gap: 68px;
+  }
+
+  @include desktop {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+}
+
 .modal__poster {
+  object-fit: cover;
   width: 240px;
   height: 357px;
   border-radius: 5px;
   margin: 0 auto;
+
+  @include tablet {
+    min-width: 264px;
+    min-height: 374px;
+  }
+
+  @include desktop {
+    min-height: 478px;
+    min-width: 375px;
+  }
 }
 
 .modal__title {
   margin-top: 20px;
   font-size: 20px;
   text-transform: uppercase;
+  font-weight: 500;
+
+  @include tablet {
+    margin: 0;
+  }
+
+  @include desktop {
+    margin: 0;
+    font-size: 30px;
+  }
 }
 
 .meta-table {
@@ -111,6 +151,10 @@
 
 .meta-table-value {
   width: 50%;
+
+  @include desktop {
+    width: 55%;
+  }
 }
 
 .meta__about {
