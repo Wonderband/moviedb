@@ -45,9 +45,11 @@
   border: 1px solid white;
   // background-color: blue;
 
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     border: 1px solid red;
-    scale: 1.05;
+    scale: 1.02;
   }
 }
 
@@ -55,6 +57,7 @@
   background-color: $accent-color;
   border: 1px solid $accent-color;
 
+  transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     scale: 1.05;
   }
