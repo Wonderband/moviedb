@@ -121,7 +121,7 @@ function btnStyleChecker(btn1, btn2) {
     const array = JSON.parse(localStorage.getItem('queueArray'));
     if (array.includes(btn2.dataset.id)) {
       btn2.classList.add('button-highlighted');
-      btn2.innerText = 'REMOVE FROM WATCHED';
+      btn2.innerText = 'REMOVE FROM QUEUE';
     }
   }
 }
