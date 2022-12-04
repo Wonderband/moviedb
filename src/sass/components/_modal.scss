@@ -169,6 +169,12 @@
   color: black;
   background-color: transparent;
   border: 2px solid black;
+  scale: 1;
+  transition: scale $animate;
+
+  &:hover {
+    scale: 1.02;
+  }
 }
 
 .button-highlighted {

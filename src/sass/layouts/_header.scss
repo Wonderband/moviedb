@@ -228,6 +228,12 @@
   text-transform: uppercase;
   font-weight: 500;
   font-size: 12px;
+  scale: 1;
+  transition: scale $animate;
+
+  &:hover {
+    scale: 1.02;
+  }
 }
 
 .current-button {
