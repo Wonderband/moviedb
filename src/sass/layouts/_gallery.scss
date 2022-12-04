@@ -7,6 +7,7 @@
   }
 }
 .gallery {
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   display: grid;
@@ -25,6 +26,12 @@
     grid-template-columns: repeat(3, 395px);
     gap: 32px 16px;
   }
+}
+
+#search-loader {
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .movie {
