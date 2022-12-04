@@ -77,3 +77,25 @@
     opacity: 0;
   }
 }
+
+#search-loader {
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#modal-loader {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#modal-loader div:after {
+  background: white;
+}
+
+#lib-loader {
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

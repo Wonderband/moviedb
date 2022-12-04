@@ -13,16 +13,6 @@
   z-index: 1;
 }
 
-#modal-loader {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#modal-loader div:after {
-  background: white;
-}
-
 .modal-container {
   line-height: 1.5;
   font-weight: 500;
