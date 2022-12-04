@@ -10,7 +10,7 @@
             loading='lazy' />
         {{/unless}}
         <h2 class='movie__title'>{{this.title}}</h2>
-        <p class='movie__info'>{{#each this.genres}}{{this.name}} {{/each}}| {{this.release_date}}</p>
+        <p class='movie__info'>{{concatenateGenres this.genres}} | {{ roundingData this.release_date}} <span class="movie__rating">{{roundingRating this.vote_average}}</span></p>
     </a>
 </li>
 {{/each}}

@@ -1,7 +1,23 @@
 import createGallery from '../templates/lib-movie-li.hbs';
+import Handlebars from 'handlebars';
 const watchedBtn = document.querySelector('.watched');
 const queueBtn = document.querySelector('.queue');
 const galleryEl = document.querySelector('.gallery');
+
+Handlebars.registerHelper('roundingData', data => {
+  return data.slice(0, 4);
+});
+
+Handlebars.registerHelper('concatenateGenres', array => {
+  return array
+    .map(obj => {
+      return obj.name;
+    })
+    .join(', ');
+});
+Handlebars.registerHelper('roundingRating', rating => {
+  return rating.toFixed(1);
+});
 
 async function FilmsLoader(target) {
   let key;
@@ -18,6 +34,7 @@ async function FilmsLoader(target) {
     return response.json();
   });
   const filmsArray = await Promise.all(arrayOfPromises);
+  console.dir(filmsArray);
   galleryEl.innerHTML = createGallery(filmsArray);
 }
 
