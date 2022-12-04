@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="./sass/index.scss" />
     <link rel="stylesheet" href="./sass/bootstrap.scss" />
   </head>
-  <body class="auth-form">
+  <body class="auth-form bg-dark">
     <div class="mb-5">
-      <h3 class="mb-3">Log In</h3>
+      <h3 class="mb-3 text-white">Log In</h3>
       <input
         type="username"
         placeholder="Username"
@@ -30,20 +30,53 @@
           role="switch"
           id="flexSwitchCheckDefault"
         />
-        <label class="form-check-label" for="flexSwitchCheckDefault"
+        <style>
+          #flexSwitchCheckDefault:checked {
+            background-color: orange;
+            border-color: orange;
+          }
+          #flexSwitchCheckDefault:hover {
+            background-color: orange;
+            border-color: orange;
+          }
+          #flexSwitchCheckDefault:focus { 
+            outline: none !important;  
+            border-color: orange;
+            box-shadow: 0 0 10px orange;
+          }
+        </style>
+        <label class="form-check-label text-white" for="flexSwitchCheckDefault"
           >Keep me Logged In</label
         >
       </div>
       <button
         type="submit"
         id="sub_login_btn"
-        class="btn btn-outline-primary mb-3 w-100"
+        class="btn btn-outline-warning mb-3 w-100"
       >
         Log In
       </button>
-      <a href="register.html" class="btn btn-secondary btn-sm py-1 w-100"
+      <style>
+        #sub_login_btn{
+          border-color: orange;
+          color: orange;
+        }
+        #sub_login_btn:hover{
+          background-color: orange;
+          color: black;
+        }
+        #sub_login_btn:focus{
+          background-color: orange;
+          color: black;
+        }
+      </style>
+      <a href="register.html" class="btn btn-secondary btn-sm py-1 w-100 mb-4"
         >Want to Create a New Account?</a
       >
+      <a href="index.html" class="btn btn-outline-danger btn-sm py-1 w-100"
+        >Back to Home</a
+      >
+
     </div>
     </div>
         <!-- <script type="module" src="./index.js"></script> -->
