@@ -156,7 +156,7 @@
   padding: 0;
   border-style: none;
   background-color: transparent;
-  
+
   color: white;
   font-weight: 500;
   text-transform: uppercase;
@@ -177,7 +177,7 @@
   padding: 0;
   border-style: none;
   background-color: transparent;
-   color: white;
+  color: white;
   font-weight: 500;
   text-transform: uppercase;
 
@@ -230,6 +230,12 @@
   text-transform: uppercase;
   font-weight: 500;
   font-size: 12px;
+  scale: 1;
+  transition: scale $animate;
+
+  &:hover {
+    scale: 1.02;
+  }
 }
 
 .current-button {
