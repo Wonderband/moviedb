@@ -42,12 +42,22 @@
 }
 
 .nav-btn-outline-primary {
-  border: 1px solid red;
+  border: 1px solid white;
   // background-color: blue;
+
+  &:hover {
+    border: 1px solid red;
+    scale: 1.05;
+  }
 }
 
 .nav-btn-login {
   background-color: $accent-color;
+  border: 1px solid $accent-color;
+
+  &:hover {
+    scale: 1.05;
+  }
 }
 .nav-btn-signout {
   background-color: red;
