@@ -29,16 +29,17 @@ async function FilmsLoader(target) {
     key = 'queueArray';
   }
   const idArray = JSON.parse(localStorage.getItem(key));
-  const arrayOfPromises = idArray.map(async filmId => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${filmId}?api_key=0fd1ddf45233c721325ad47f082cd332` //&append_to_response=videos,images&language=en`
-    );
-    return response.json();
-  });
-  const filmsArray = await Promise.all(arrayOfPromises);
-  console.dir(filmsArray);
+  if (idArray) {
+    const arrayOfPromises = idArray.map(async filmId => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${filmId}?api_key=0fd1ddf45233c721325ad47f082cd332` //&append_to_response=videos,images&language=en`
+      );
+      return response.json();
+    });
+    const filmsArray = await Promise.all(arrayOfPromises);
+    galleryEl.innerHTML = createGallery(filmsArray);
+  }
   preloader.classList.add('visually-hidden');
-  galleryEl.innerHTML = createGallery(filmsArray);
 }
 
 FilmsLoader(watchedBtn);
