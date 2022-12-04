@@ -9,32 +9,51 @@
 <h3 class='modal__title'>{{this.title}}</h3>
 <div class='modal__meta'>
   <ul class='meta-list'>
-    <li class='meta-item'><span class='meta-item__title'>Vote/Votes</span><span
-      >{{this.vote_average}}</span><span>{{this.vote_count}}</span></li>
-    <li class='meta-item'><span class='meta-item__title'>Popularity</span><span
-      >{{this.popularity}}</span></li>
+
     <li class='meta-item'>
-      <span class='meta-item__title'>Original Title</span><span
-        class='meta-item__original_title'
-      >{{this.original_title}}</span>
+      <span class='meta-item__title'>Vote/Votes</span>
+      <span>
+        <span class='meta-item__votes-highlighted'>{{this.vote_average}}</span>
+        /
+        <span class='meta-item__votes-dimmed'>{{this.vote_count}}</span>
+      </span>
     </li>
-    <li class='meta-item'><span class='meta-item__title'>Genre</span><span
-      >{{this.genres}}</span></li>
+
+    <li class='meta-item'>
+      <span class='meta-item__title'>Popularity</span>
+      <span>{{this.popularity}}</span>
+    </li>
+
+    <li class='meta-item'>
+      <span class='meta-item__title'>Original Title</span>
+      <span class='meta-item__original_title'>{{this.original_title}}</span>
+    </li>
+
+    <li class='meta-item'>
+      <span class='meta-item__title'>Genre</span>
+      <span>{{this.genres}}</span>
+    </li>
+
   </ul>
-  <p>ABOUT</p>
+
+  <p class='meta__about'>ABOUT</p>
   <p>{{this.about}}</p>
-  <button
-    type='button'
-    class='modal__button add-to-watched'
-    data-id='{{this.id}}'
-  >
-    ADD TO WATCHED
-  </button>
-  <button
-    type='button'
-    class='modal__button add-to-queue'
-    data-id='{{this.id}}'
-  >
-    ADD TO QUEUE
-  </button>
+
+  <div class='modal-buttons'>
+    <button
+      type='button'
+      class='modal__button add-to-watched'
+      data-id='{{this.id}}'
+    >
+      ADD TO WATCHED
+    </button>
+    <button
+      type='button'
+      class='modal__button add-to-queue'
+      data-id='{{this.id}}'
+    >
+      ADD TO QUEUE
+    </button>
+  </div>
+
 </div>
