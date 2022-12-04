@@ -30,26 +30,28 @@ window.onload = function () {
     getUsername();
     if (currentUser == null) {
         userlink.innerText = 'Create New Account';
-        userlink.classList.replace("nav-link", "btn");
-        userlink.classList.add("btn-outline-primary");
+        userlink.classList.replace("nav-link", "nav-btn");
+        userlink.classList.add("nav-btn-outline-primary");
         userlink.href = 'register.html';
 
         signoutlink.innerText = 'Login';
-        signoutlink.classList.replace("nav-link", "btn");
-        signoutlink.classList.add("btn-success");
+        signoutlink.classList.replace("nav-link", "nav-btn");
+        signoutlink.classList.add("nav-btn-login");
         signoutlink.href = 'login.html';
     }
 
     else {
-        userlink.innerText = currentUser.username;
-        header.innerText = "Welcome " + currentUser.fullname;
-        userlink.classList.replace("btn", "nav-link");
-        userlink.classList.remove("btn-outline-primary");
-        // userlink.href = '#';
+        userlink.innerText = "Welcome, @" + currentUser.username;
+        // header.innerText = "Welcome " + currentUser.fullname;
+        userlink.classList.replace("nav-btn", "nav-link");
+        userlink.classList.remove("nav-btn-outline-primary");
+        userlink.href = '#';
 
         signoutlink.innerText = 'Sign Out';
-        signoutlink.classList.replace("btn", "nav-link");
-        signoutlink.classList.remove("btn-success");
+        // signoutlink.classList.replace("nav-btn", "nav-link");
+        signoutlink.classList.replace("nav-btn-login", "nav-btn-signout");
+        // signoutlink.classList.remove("nav-btn-login");
+          signoutlink.classList.add("nav-btn-signout");
         signoutlink.addEventListener('click', signOut)
 
     }

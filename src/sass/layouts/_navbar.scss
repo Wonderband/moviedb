@@ -1,0 +1,41 @@
+.navbar {
+  background-color: #2b2f3a;
+  color: #fff;
+}
+
+.navbar-list {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 15px;
+  //   margin-left: auto;
+  //   padding-left: auto;
+}
+
+.nav-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  //   margin-left: auto;
+}
+
+// .nav-link {
+//   display: block;
+// }
+
+.nav-btn {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #000;
+}
+
+.nav-btn-outline-primary {
+  background-color: blue;
+}
+
+.nav-btn-login {
+  background-color: green;
+}
+.nav-btn-signout {
+  background-color: red;
+}
