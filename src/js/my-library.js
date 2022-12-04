@@ -45,7 +45,6 @@ FilmsLoader(watchedBtn);
 
 function currentBtnTogler(target) {
   galleryEl.textContent = '';
-  preloader.classList.remove('visually-hidden');
   if (!target.classList.contains('current-button')) {
     const childrenObj = target.parentElement.children;
     for (const key in childrenObj) {
