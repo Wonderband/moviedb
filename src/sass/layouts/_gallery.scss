@@ -79,6 +79,7 @@
 }
 .placeholder {
   position: relative;
+  top: 50%;
   @include tablet {
     left: 50%;
   }

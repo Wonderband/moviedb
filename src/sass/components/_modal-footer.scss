@@ -1,0 +1,83 @@
+.modal-footer {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 280px;
+  max-height: 100%;
+  padding: 48px 20px 20px 20px;
+  overflow: auto;
+
+  background-color: white;
+  @include tablet {
+    width: 704px;
+    height: 1000px;
+    padding: 20px 20px 20px 20px;
+  }
+  @include desktop {
+    width: 1216px;
+    height: 410px;
+    padding: 48px 15px 30px;
+  }
+}
+.team {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  @include tablet {
+    gap: 35px;
+    row-gap: 15px;
+  }
+  @include desktop {
+    gap: 20px;
+  }
+}
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 220px;
+  height: 310px;
+  @include desktop {
+    height: 320px;
+  }
+}
+.team-photo {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+.team-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border: 1px solid #eeeeee;
+  border-top-width: 0px;
+}
+.team-name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.19;
+  text-align: center;
+}
+.team-text {
+  color: #757575;
+  font-size: 16px;
+  line-height: 1.19;
+  text-align: center;
+}
+.team-icon {
+  @include desktop {
+    width: 25px;
+    height: 25px;
+  }
+}
