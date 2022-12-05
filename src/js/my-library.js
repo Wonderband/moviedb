@@ -22,7 +22,6 @@ Handlebars.registerHelper('roundingRating', rating => {
 });
 
 async function filmsLoader(target) {
-  galleryEl.innerHTML = `<img src="${placewHolder}" />`;
   let key;
   if (target.classList.contains('watched')) {
     key = 'watchedArray';
@@ -30,7 +29,6 @@ async function filmsLoader(target) {
     key = 'queueArray';
   }
   const idArray = JSON.parse(localStorage.getItem(key));
-  console.log(idArray);
   if (idArray && idArray.length > 0) {
     preloader.classList.remove('visually-hidden');
 
@@ -43,6 +41,8 @@ async function filmsLoader(target) {
     const filmsArray = await Promise.all(arrayOfPromises);
     galleryEl.innerHTML = createGallery(filmsArray);
     preloader.classList.add('visually-hidden');
+  } else {
+    galleryEl.innerHTML = `<img class='placeholder' src="${placewHolder}" />`;
   }
 }
 

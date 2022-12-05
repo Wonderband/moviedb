@@ -77,3 +77,12 @@
     }
   }
 }
+.placeholder {
+  position: relative;
+  @include tablet {
+    left: 50%;
+  }
+  @include desktop {
+    left: 100%;
+  }
+}

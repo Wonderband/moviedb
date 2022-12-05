@@ -2,7 +2,11 @@ import requestWithKey from './requestWithKey';
 import createModal from '../templates/modal.hbs';
 import notFoundImg from '../jpg/not-found-img.png';
 import { addToLocalStorage } from './localStorageAPI';
+import createGallery from '../templates/lib-movie-li.hbs';
+import placewHolder from '../jpg/placeholder.jpg';
 
+const watchedBtn = document.querySelector('.watched');
+const queueBtn = document.querySelector('.queue');
 const backdropNode = document.querySelector('.backdrop');
 const modalNode = document.querySelector('.modal-container');
 const modalContentNode = document.querySelector('.modal');
@@ -74,6 +78,38 @@ function onCloseModal() {
 
   document.removeEventListener('keydown', onKeyDown);
   backdropNode.removeEventListener('click', onBackdrop);
+  if (watchedBtn) {
+    if (watchedBtn.classList.contains('current-button')) {
+      filmsLoader(watchedBtn);
+    } else {
+      filmsLoader(queueBtn);
+    }
+  }
+}
+
+async function filmsLoader(target) {
+  let key;
+  if (target.classList.contains('watched')) {
+    key = 'watchedArray';
+  } else {
+    key = 'queueArray';
+  }
+  const idArray = JSON.parse(localStorage.getItem(key));
+  if (idArray && idArray.length > 0) {
+    preloader.classList.remove('visually-hidden');
+
+    const arrayOfPromises = idArray.map(async filmId => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${filmId}?api_key=0fd1ddf45233c721325ad47f082cd332` //&append_to_response=videos,images&language=en`
+      );
+      return response.json();
+    });
+    const filmsArray = await Promise.all(arrayOfPromises);
+    moviesGallery.innerHTML = createGallery(filmsArray);
+    preloader.classList.add('visually-hidden');
+  } else {
+    moviesGallery.innerHTML = `<img class='placeholder' src="${placewHolder}" />`;
+  }
 }
 
 function insertIntoModal(movieData) {
