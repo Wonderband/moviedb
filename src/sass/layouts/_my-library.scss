@@ -1,8 +1,16 @@
 .my-library {
-  @include mobile {
-    padding: 20px 0;
-  }
+  padding: 20px 0;
+
   @include tablet {
     padding: 60px 0;
+  }
+}
+.container--in-library {
+  min-height: 442px;
+  @include tablet {
+    min-height: 495px;
+  }
+  @include desktop {
+    min-height: 659px;
   }
 }

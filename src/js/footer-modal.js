@@ -1,18 +1,18 @@
+const backdropElm = document.querySelector('.backdrop');
+const modalFooterElm = document.querySelector('.modal-footer');
 const footerBtn = document.querySelector('.footer__button');
-const backdropNode = document.querySelector('.backdrop');
-const modalNode = document.querySelector('.modal-container');
+
 const modalContentNode = document.querySelector('.modal');
 
 footerBtn.addEventListener('click', onFooterBtnClick);
 
 function onFooterBtnClick(event) {
-  console.log('hello');
   document.body.classList.add('noScroll');
-  backdropNode.classList.remove('visually-hidden');
-  modalNode.classList.remove('visually-hidden');
+  backdropElm.classList.remove('visually-hidden');
+  modalFooterElm.classList.remove('visually-hidden');
 
   document.addEventListener('keydown', onKeyDown);
-  backdropNode.addEventListener('click', onBackdrop);
+  backdropElm.addEventListener('click', onBackdrop);
 }
 function onKeyDown(event) {
   if (event.key === 'Escape') {
@@ -30,10 +30,9 @@ function onBackdrop(event) {
 
 function onCloseModal() {
   document.body.classList.remove('noScroll');
-  backdropNode.classList.add('visually-hidden');
-  modalNode.classList.add('visually-hidden');
-  modalContentNode.textContent = '';
+  backdropElm.classList.add('visually-hidden');
+  modalFooterElm.classList.add('visually-hidden');
 
   document.removeEventListener('keydown', onKeyDown);
-  backdropNode.removeEventListener('click', onBackdrop);
+  backdropElm.removeEventListener('click', onBackdrop);
 }
