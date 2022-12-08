@@ -22,22 +22,27 @@ let queryGlobal;
 
 class MovieDB {
   showTrending() {
-    Promise.all([getGenres(GENRES_URL), getMovies(TRENDING_URL)])
+    return Promise.all([getGenres(GENRES_URL), getMovies(TRENDING_URL)])
       .then(res => {
-        this.genresArray = res[0];
-        this.totalMovies = res[1].data.total_results;
+        this.genresArray = res[0];       
         return res[1].data;
       })
       .then(result => {
         return this.buildMoviesData(result);
       })
-      .then(movies => showMovies(movies))
+      .then(movies => { 
+        return showMovies(movies);
+      })
+      .then(res => { 
+        showPagination(TRENDING_URL, 1);
+        queryGlobal = TRENDING_URL;
+      })
       .catch(err => console.log(err));
   }
 
   buildMoviesData(data) {
     const movieData = data.results;
-    this.totalMovies = data.total_results;
+    this.totalMovies = data.total_results;    
     return movieData.map(el => {
       return {
         poster: el.poster_path ? IMG_URL + el.poster_path : notFoundImg,
@@ -55,13 +60,12 @@ class MovieDB {
 
 const myMoviesDB = new MovieDB();
 myMoviesDB.showTrending();
-clearPagination();
 submitBtn.addEventListener('click', findMovies);
 window.onresize = onChangeWindowSize;
 
 function showMovies(resultArray) {
   preloader.classList.add('visually-hidden');
-  moviesGallery.insertAdjacentHTML('beforeend', createGallery(resultArray));
+  moviesGallery.insertAdjacentHTML('beforeend', createGallery(resultArray));  
 }
 
 function clearMovies() {
@@ -109,7 +113,6 @@ function findMovies(event) {
         Notiflix.Notify.failure(
           'Search result not successful. Enter the correct movie name and try again'
         );
-
         clearPagination();
         myMoviesDB.showTrending();
         return;
@@ -122,7 +125,8 @@ function findMovies(event) {
 }
 
 function getCurrentPageFromServer(request, currentPage) {
-  const queryRequest = request + '&page=' + currentPage;
+  const addPage = request.indexOf('?') === -1 ? '?page=' : '&page=';
+  const queryRequest =  request + addPage + currentPage; 
   getMovies(queryRequest)
     .then(res => {
       return myMoviesDB.buildMoviesData(res.data);
