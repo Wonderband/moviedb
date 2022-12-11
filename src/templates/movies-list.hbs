@@ -1,12 +1,13 @@
 {{#each this}}
   <li class='gallery-item' data-id='{{this.id}}'>
     <a class='movie__link' href=''>
-      <img
-        class='movie__poster'
-        src='{{this.poster}}'
-        alt='Movie poster'
-        loading='lazy'
-      />
+        {{#if this.poster}}
+        <img class='movie__poster' src='https://image.tmdb.org/t/p/w500/{{this.poster}}' alt='Movie poster'
+            loading='lazy' />
+        {{/if}}
+        {{#unless this.poster}}
+        <div class="movie__poster img-placeholder"></div>
+        {{/unless}}
       <h2 class='movie__title'>{{this.title}}</h2>
       <p class='movie__info'>{{this.genres}} | {{this.date}}</p>
     </a>

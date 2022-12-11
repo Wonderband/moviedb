@@ -1,10 +1,15 @@
 <a class='modal__link' href='#'>
-  <img
-    class='modal__poster'
-    src='{{this.poster}}'
-    alt='{{this.title}}'
-    loading='lazy'
-  />
+  {{#if this.poster_path}}
+    <img
+      class='modal__poster'
+      src='https://image.tmdb.org/t/p/w500/{{this.poster_path}}'
+      alt='Movie poster'
+      loading='lazy'
+    />
+  {{/if}}
+  {{#unless this.poster_path}}
+    <div class='modal__poster img-placeholder'></div>
+  {{/unless}}
 </a>
 <div class='modal__meta'>
   <h3 class='modal__title'>{{this.title}}</h3>

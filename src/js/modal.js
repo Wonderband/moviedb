@@ -33,9 +33,10 @@ function onOpenModal(event) {
       const movieObj = { ...data };
       movieObj.vote_average = data.vote_average.toFixed(1);
       movieObj.popularity = data.popularity.toFixed(1);
-      movieObj.poster = data.poster_path
-        ? IMG_URL + data.poster_path
-        : notFoundImg;
+      //   movieObj.poster = data.poster_path
+      //     ? IMG_URL + data.poster_path
+      //     : notFoundImg;
+      movieObj.poster = data.poster_path;
       movieObj.genres = data.genres.map(el => el.name).join(', ');
       movieObj.about =
         data.overview ?? 'Sorry, there is no information about this movie';

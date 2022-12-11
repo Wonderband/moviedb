@@ -1,7 +1,7 @@
 :root {
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-duration: 250ms;
-}  
+}
 
 .gallery-item .movie__link {
   display: flex;
@@ -10,11 +10,11 @@
 }
 
 .movie__poster {
-  max-height: 402px;
+  min-height: 402px;
   margin-bottom: 10px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-    transition: transform var(--animation-duration) var(--timing-function);
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  transition: transform var(--animation-duration) var(--timing-function);
 
   @media screen and (min-width: 768px) {
     max-height: 455px;
@@ -27,9 +27,9 @@
   }
 }
 
-.movie__poster:hover {    
+.movie__poster:hover {
   transform: scale(1.03);
-}  
+}
 
 .movie__link .movie__title {
   margin: 0;

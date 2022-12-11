@@ -6,8 +6,7 @@
             loading='lazy' />
         {{/if}}
         {{#unless this.poster_path}}
-        <img class='movie__poster' src='https://dummyimage.com/500x750/ffffff/000000.png&text=++IMAGE+NOT+FOUND' alt='Movie poster'
-            loading='lazy' />
+            <div class="movie__poster img-placeholder"></div>
         {{/unless}}
         <h2 class='movie__title'>{{this.title}}</h2>
         <p class='movie__info'>{{concatenateGenres this.genres}} | {{ roundingData this.release_date}} <span class="movie__rating">{{roundingRating this.vote_average}}</span></p>
