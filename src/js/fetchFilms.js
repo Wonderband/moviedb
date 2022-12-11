@@ -24,16 +24,16 @@ class MovieDB {
   showTrending() {
     return Promise.all([getGenres(GENRES_URL), getMovies(TRENDING_URL)])
       .then(res => {
-        this.genresArray = res[0];       
+        this.genresArray = res[0];
         return res[1].data;
       })
       .then(result => {
         return this.buildMoviesData(result);
       })
-      .then(movies => { 
+      .then(movies => {
         return showMovies(movies);
       })
-      .then(res => { 
+      .then(res => {
         showPagination(TRENDING_URL, 1);
         queryGlobal = TRENDING_URL;
       })
@@ -42,10 +42,11 @@ class MovieDB {
 
   buildMoviesData(data) {
     const movieData = data.results;
-    this.totalMovies = data.total_results;    
+    this.totalMovies = data.total_results;
     return movieData.map(el => {
       return {
-        poster: el.poster_path ? IMG_URL + el.poster_path : notFoundImg,
+        // poster: el.poster_path ? IMG_URL + el.poster_path : notFoundImg,
+        poster: el.poster_path,
         title: el.title,
         genres: el.genre_ids
           .map(genreId => this.genresArray.find(el => el.id === genreId).name)
@@ -65,7 +66,7 @@ window.onresize = onChangeWindowSize;
 
 function showMovies(resultArray) {
   preloader.classList.add('visually-hidden');
-  moviesGallery.insertAdjacentHTML('beforeend', createGallery(resultArray));  
+  moviesGallery.insertAdjacentHTML('beforeend', createGallery(resultArray));
 }
 
 function clearMovies() {
@@ -126,7 +127,7 @@ function findMovies(event) {
 
 function getCurrentPageFromServer(request, currentPage) {
   const addPage = request.indexOf('?') === -1 ? '?page=' : '&page=';
-  const queryRequest =  request + addPage + currentPage; 
+  const queryRequest = request + addPage + currentPage;
   getMovies(queryRequest)
     .then(res => {
       return myMoviesDB.buildMoviesData(res.data);
