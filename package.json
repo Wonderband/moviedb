@@ -5,7 +5,7 @@
   "homepage": "https://wonderband.github.io/moviedb/",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /moviedb/"
+    "build": "parcel build src/*.html --public-url /js-team-project/"
   },
   "repository": {
     "type": "git",
