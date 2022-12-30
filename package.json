@@ -2,7 +2,7 @@
   "name": "moviedb",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://wonderband.github.io/moviedb",
+  "homepage": "https://wonderband.github.io/moviedb/",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /js-team-project/"
